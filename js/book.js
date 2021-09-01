@@ -30,8 +30,23 @@ const bookCardDiv = url => {
             //console.log(data);
 
             data.docs.forEach(element => {
+                //console.log(element);
+                const bookContainer = document.getElementById("book-items");
 
-            })
+                const bookDiv = document.createElement('div');
+
+                bookDiv.className = "col m-auto";
+                bookDiv.innerHTML = `<div class="card ">
+                    <img src="https://covers.openlibrary.org/b/id/${element.cover_i}-M.jpg" class="card-img-top img-fluid" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">${element.text[3]}</h5>
+                      <h5 class="card-title">Card title</h5>
+                      <p class="card-text"></p>
+                      <p class="card-text"></p>
+                    </div>
+                  </div>`
+                bookContainer.appendChild(bookDiv);
+            });
         })
 
 }
