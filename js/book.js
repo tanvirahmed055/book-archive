@@ -28,10 +28,18 @@ const bookCardDiv = url => {
     fetchedData(url)
         .then(data => {
             //console.log(data);
+            const first20Books = data.docs.slice(0, 20);
+            const bookContainer = document.getElementById("book-items");
 
-            data.docs.forEach(element => {
+            const searchCountDiv = document.createElement('div');
+            searchCountDiv.innerHTML = `
+            <div><h1 class="text-center">Showing first 20 results out of ${data.numFound} results<h1></div>
+            `
+            bookContainer.appendChild(searchCountDiv);
+
+            first20Books.forEach(element => {
                 //console.log(element);
-                const bookContainer = document.getElementById("book-items");
+
 
                 const bookDiv = document.createElement('div');
 
@@ -39,14 +47,16 @@ const bookCardDiv = url => {
                 bookDiv.innerHTML = `<div class="card ">
                     <img src="https://covers.openlibrary.org/b/id/${element.cover_i}-M.jpg" class="card-img-top img-fluid" alt="...">
                     <div class="card-body">
-                      <h5 class="card-title">Book Name: ${element.text[3]}</h5>
-                      <p class="card-text">Author Name: ${element.author_name[0]}</p>
-                      <p class="card-text">Published Year: ${element.first_publish_year}</p>
-                      <p class="card-text">Publisher Name: ${element.publisher}</p>
+                      <h5 class="card-title fw-bold">Book Name: ${element.title}</h5>
+                      <p class="card-text fw-bold">Author Name: ${element.author_name[0]}</p>
+                      <p class="card-text fw-bold">Published Year: ${element.first_publish_year}</p>
+                      <p class="card-text fw-bold">Publisher Name: ${element.publisher}</p>
                     </div>
                   </div>`
                 bookContainer.appendChild(bookDiv);
             });
+
+
         })
 
 }
