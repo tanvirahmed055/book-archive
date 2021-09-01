@@ -40,7 +40,7 @@ const bookCardDiv = url => {
                 const bookDiv = document.createElement('div');
 
                 bookDiv.className = "col m-auto";
-                bookDiv.innerHTML = `<div class="card h-100 mt-4">
+                bookDiv.innerHTML = `<div class="card h-100 mt-4 shadow rounded p-3">
                     <img src="https://covers.openlibrary.org/b/id/${element.cover_i}-M.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
                       <h6 class="card-title fw-bold">Book Name: ${element.title}</h6>
@@ -52,12 +52,29 @@ const bookCardDiv = url => {
                 bookContainer.appendChild(bookDiv);
             });
 
-            const searchCountDiv = document.createElement('div');
-            searchCountDiv.innerHTML = `
+            if (data.numFound > 0) {
+                const searchCountDiv = document.createElement('div');
+                searchCountDiv.innerHTML = `
             <div><h1 class="text-center">Showing first 20 results out of ${data.numFound} results<h1></div>
             `
-            countContainer.appendChild(searchCountDiv);
+                countContainer.appendChild(searchCountDiv);
+            } else {
+                errorMessage();
+            }
+
         })
+
 
 }
 
+
+
+
+const errorMessage = () => {
+    const searchText = document.getElementById("input-value").value;
+    const errorMessageDiv = document.getElementById("error-message");
+
+    errorMessageDiv.innerHTML = `<div class="card m-auto p-5 bg-danger text-white" >
+          <h1 class="card-title text-center">No Result Found</h1>
+        </div>`;
+};
