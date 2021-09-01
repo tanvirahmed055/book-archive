@@ -5,6 +5,7 @@ button.addEventListener('click', (e) => {
     document.getElementById("error-message").innerHTML = "";
     document.getElementById("book-detail").innerHTML = "";
     document.getElementById("book-items").innerHTML = "";
+    document.getElementById("count-detail").innerHTML = "";
     const searchText = document.getElementById("input-value").value;
     //console.log(searchText);
     getBookData(searchText);
@@ -39,13 +40,13 @@ const bookCardDiv = url => {
                 const bookDiv = document.createElement('div');
 
                 bookDiv.className = "col m-auto";
-                bookDiv.innerHTML = `<div class="card ">
-                    <img src="https://covers.openlibrary.org/b/id/${element.cover_i}-M.jpg" class="card-img-top img-fluid" alt="...">
+                bookDiv.innerHTML = `<div class="card h-100 mt-4">
+                    <img src="https://covers.openlibrary.org/b/id/${element.cover_i}-M.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
-                      <h5 class="card-title fw-bold">Book Name: ${element.title}</h5>
+                      <h6 class="card-title fw-bold">Book Name: ${element.title}</h6>
                       <p class="card-text fw-bold">Author Name: ${element.author_name[0]}</p>
                       <p class="card-text fw-bold">Published Year: ${element.first_publish_year}</p>
-                      <p class="card-text fw-bold">Publisher Name: ${element.publisher}</p>
+                      <p class="card-text fw-bold">Publisher Name: ${element.publisher.slice(0, 10)}</p>
                     </div>
                   </div>`
                 bookContainer.appendChild(bookDiv);
