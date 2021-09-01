@@ -39,10 +39,10 @@ const bookCardDiv = url => {
                 bookDiv.innerHTML = `<div class="card ">
                     <img src="https://covers.openlibrary.org/b/id/${element.cover_i}-M.jpg" class="card-img-top img-fluid" alt="...">
                     <div class="card-body">
-                      <h5 class="card-title">${element.text[3]}</h5>
-                      <h5 class="card-title">${element.author_name[0]}</h5>
-                      <p class="card-text">${element.first_publish_year}</p>
-                      <p class="card-text"></p>
+                      <h5 class="card-title">Book Name: ${element.text[3]}</h5>
+                      <p class="card-text">Author Name: ${element.author_name[0]}</p>
+                      <p class="card-text">Published Year: ${element.first_publish_year}</p>
+                      <p class="card-text">Publisher Name: ${element.publisher}</p>
                     </div>
                   </div>`
                 bookContainer.appendChild(bookDiv);
