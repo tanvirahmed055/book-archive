@@ -41,8 +41,8 @@ const bookCardDiv = url => {
                     <div class="card-body">
                       <h5 class="card-title">${element.text[3]}</h5>
                       <h5 class="card-title">${element.author_name[0]}</h5>
+                      <p class="card-text">${element.first_publish_year}</p>
                       <p class="card-text"></p>
-                      <p class="card-text">$</p>
                     </div>
                   </div>`
                 bookContainer.appendChild(bookDiv);
