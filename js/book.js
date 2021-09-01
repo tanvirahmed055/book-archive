@@ -8,7 +8,14 @@ button.addEventListener('click', (e) => {
     document.getElementById("count-detail").innerHTML = "";
     const searchText = document.getElementById("input-value").value;
     //console.log(searchText);
-    getBookData(searchText);
+
+    if (searchText.length > 0) {
+        document.getElementById("spinner").classList.remove("d-none");
+        getBookData(searchText);
+    } else {
+        document.getElementById("error-message").innerHTML =
+            "<p class='text-center p-3 bg-danger'><b>Please enter a book name</b></p>";
+    }
 
 });
 
@@ -28,6 +35,7 @@ const fetchedData = async (url) => {
 const bookCardDiv = url => {
     fetchedData(url)
         .then(data => {
+            document.getElementById("spinner").classList.add("d-none");
             //console.log(data);
             const first20Books = data.docs.slice(0, 20);
             const bookContainer = document.getElementById("book-items");
@@ -41,12 +49,12 @@ const bookCardDiv = url => {
 
                 bookDiv.className = "col m-auto";
                 bookDiv.innerHTML = `<div class="card h-100 mt-4 shadow rounded p-3">
-                    <img src="https://covers.openlibrary.org/b/id/${element.cover_i}-M.jpg" class="card-img-top" alt="...">
+                    <img src="https://covers.openlibrary.org/b/id/${element.cover_i}-M.jpg" class="card-img-top" alt="No Image Available">
                     <div class="card-body">
                       <h6 class="card-title fw-bold">Book Name: ${element.title}</h6>
                       <p class="card-text fw-bold">Author Name: ${element.author_name[0]}</p>
                       <p class="card-text fw-bold">Published Year: ${element.first_publish_year}</p>
-                      <p class="card-text fw-bold">Publisher Name: ${element.publisher.slice(0, 10)}</p>
+                      <p class="card-text fw-bold">Publisher Name: ${element.publisher.slice(0, 5)}</p>
                     </div>
                   </div>`
                 bookContainer.appendChild(bookDiv);
@@ -64,7 +72,7 @@ const bookCardDiv = url => {
 
         })
 
-
+    document.getElementById("input-value").value = "";
 }
 
 
