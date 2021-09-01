@@ -12,4 +12,27 @@ button.addEventListener('click', (e) => {
 });
 
 
+const getBookData = (bookName) => {
+    bookCardDiv(`https://openlibrary.org/search.json?q=${bookName}`);
+}
+
+
+const fetchedData = async (url) => {
+    const res = await fetch(url);
+    const data = await res.json();
+    return data;
+}
+
+
+const bookCardDiv = url => {
+    fetchedData(url)
+        .then(data => {
+            //console.log(data);
+
+            data.docs.forEach(element => {
+
+            })
+        })
+
+}
 
