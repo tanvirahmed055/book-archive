@@ -30,12 +30,7 @@ const bookCardDiv = url => {
             //console.log(data);
             const first20Books = data.docs.slice(0, 20);
             const bookContainer = document.getElementById("book-items");
-
-            const searchCountDiv = document.createElement('div');
-            searchCountDiv.innerHTML = `
-            <div><h1 class="text-center">Showing first 20 results out of ${data.numFound} results<h1></div>
-            `
-            bookContainer.appendChild(searchCountDiv);
+            const countContainer = document.getElementById("count-detail");
 
             first20Books.forEach(element => {
                 //console.log(element);
@@ -56,7 +51,11 @@ const bookCardDiv = url => {
                 bookContainer.appendChild(bookDiv);
             });
 
-
+            const searchCountDiv = document.createElement('div');
+            searchCountDiv.innerHTML = `
+            <div><h1 class="text-center">Showing first 20 results out of ${data.numFound} results<h1></div>
+            `
+            countContainer.appendChild(searchCountDiv);
         })
 
 }
