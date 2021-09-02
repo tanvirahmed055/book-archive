@@ -17,8 +17,8 @@
     <main>
         <section class="container">
             <div class="m-5">
-
                 <h1 class="text-center text-success mb-4">Search your favorite book</h1>
+                <!-- book search area -->
                 <form class="d-flex m-auto w-75">
                     <input class="form-control me-2" type="search" placeholder="Search Book" aria-label="Search"
                         id="input-value" />
@@ -28,10 +28,8 @@
                 </form>
 
                 <!-- spinner start -->
-
                 <div class="d-flex justify-content-center mt-5 d-none" id="spinner">
                     <div class="spinner-grow text-primary" role="status">
-
                         <span class="visually-hidden">Loading...</span>
                     </div>
                     <div class="spinner-grow text-secondary" role="status">
@@ -58,14 +56,15 @@
                 </div>
             </div>
             <!-- spinner end -->
-            </div>
+
+
             <!-- error message div -->
             <div id="error-message"></div>
-            <!-- single book div -->
-            <div id="book-detail"></div>
-            <!-- all books div -->
+
+            <!-- all books result div -->
             <div class="row row-cols-1 row-cols-md-3 g-4 mt-3" id="book-items"></div>
-            <!-- seach result count div -->
+
+            <!-- count seach result div -->
             <div class="my-4" id="count-detail"></div>
         </section>
     </main>
