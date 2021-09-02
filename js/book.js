@@ -48,14 +48,19 @@ const bookCardDiv = url => {
                 const bookDiv = document.createElement('div');
 
                 bookDiv.className = "col m-auto";
-                bookDiv.innerHTML = `<div class="card h-100 mt-4 shadow rounded p-3">
-                    <img src="https://covers.openlibrary.org/b/id/${element?.cover_i}-M.jpg" class="card-img-top" alt="No Image Available">
+                bookDiv.innerHTML = `<div class="m-3" >
+                <div class="card h-100  shadow rounded p-3">
+
+      
+                <img src="https://covers.openlibrary.org/b/id/${element?.cover_i ? element.cover_i : 10909258}-M.jpg" class="card-img-top img-fluid" alt="No Image Available"> 
+     
                     <div class="card-body">
                       <h6 class="card-title fw-bold">Book Name: ${element?.title || 'No Book Name Available'}</h6>
                       <p class="card-text fw-bold">Author Name: ${element?.author_name?.slice(0, 10) || 'No Author Name Available'} </p>
                       <p class="card-text fw-bold">Published Year: ${element?.first_publish_year || 'No Published Year Found'}</p>
                       <p class="card-text fw-bold">Publisher Name: ${element?.publisher?.slice(0, 5) || 'No Publisher Name Found'}</p>
                     </div>
+                  </div>
                   </div>`
                 bookContainer.appendChild(bookDiv);
             });
