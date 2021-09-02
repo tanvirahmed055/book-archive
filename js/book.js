@@ -38,10 +38,11 @@ const bookCardDiv = url => {
 
             const { docs, numFound } = data;
 
+            displayCount(numFound);
+
             const first30Books = docs.slice(0, 30);
 
             const bookContainer = document.getElementById("book-items");
-
 
             first30Books?.forEach(element => {
                 const { cover_i, title, author_name, first_publish_year, publisher } = element;
@@ -61,9 +62,6 @@ const bookCardDiv = url => {
               </div>`
                 bookContainer.appendChild(bookDiv);
             });
-
-            displayCount(numFound);
-
         })
     //clear search field
     document.getElementById("input-value").value = "";
