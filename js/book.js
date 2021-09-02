@@ -48,7 +48,7 @@ const bookCardDiv = url => {
                 const bookDiv = document.createElement('div');
 
                 bookDiv.classList.add = "col";
-                bookDiv.innerHTML = `<div class="card h-100">
+                bookDiv.innerHTML = `<div class="card h-100 shadow rounded p-3">
                 <img src="https://covers.openlibrary.org/b/id/${element?.cover_i ? element.cover_i : 10909258}-M.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
                   <h5 class="card-title">Book Name: ${element?.title}</h5>
@@ -64,7 +64,7 @@ const bookCardDiv = url => {
             if (data.numFound > 0) {
                 const searchCountDiv = document.createElement('div');
                 searchCountDiv.innerHTML = `
-            <div><h1 class="text-center">Showing first 30 results out of ${data.numFound} results<h1></div>
+            <div class="mt-5 mb-3"><h1 class="text-center text-danger">Showing first 30 results out of ${data.numFound} results.<h1></div>
             `
                 countContainer.appendChild(searchCountDiv);
             } else {
