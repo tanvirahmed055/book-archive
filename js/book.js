@@ -41,7 +41,7 @@ const bookCardDiv = url => {
             const bookContainer = document.getElementById("book-items");
             const countContainer = document.getElementById("count-detail");
 
-            first20Books.forEach(element => {
+            first20Books?.forEach(element => {
                 //console.log(element);
 
 
@@ -51,10 +51,10 @@ const bookCardDiv = url => {
                 bookDiv.innerHTML = `<div class="card h-100 mt-4 shadow rounded p-3">
                     <img src="https://covers.openlibrary.org/b/id/${element.cover_i}-M.jpg" class="card-img-top" alt="No Image Available">
                     <div class="card-body">
-                      <h6 class="card-title fw-bold">Book Name: ${element.title}</h6>
-                      <p class="card-text fw-bold">Author Name: ${element.author_name[0]}</p>
-                      <p class="card-text fw-bold">Published Year: ${element.first_publish_year}</p>
-                      <p class="card-text fw-bold">Publisher Name: ${element.publisher.slice(0, 5)}</p>
+                      <h6 class="card-title fw-bold">Book Name: ${element.title ? element.title : 'No Book Name Available'}</h6>
+                      <p class="card-text fw-bold">Author Name: ${element.author_name[0] ? element.author_name[0] : 'No Author Name Found'}</p>
+                      <p class="card-text fw-bold">Published Year: ${element.first_publish_year ? element.first_publish_year : 'No Published Year Found'}</p>
+                      <p class="card-text fw-bold">Publisher Name: ${element.publisher.slice(0, 5) ? element.publisher.slice(0, 5) : 'No Publisher Name Found'}</p>
                     </div>
                   </div>`
                 bookContainer.appendChild(bookDiv);
