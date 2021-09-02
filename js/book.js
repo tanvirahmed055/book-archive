@@ -13,7 +13,7 @@ button.addEventListener('click', (e) => {
         getBookData(searchText);
     } else {
         document.getElementById("error-message").innerHTML =
-            "<p class='text-center p-3 bg-danger'><b>Please enter a book name</b></p>";
+            "<h2 class='text-center p-5 bg-danger text-white'><b>Please enter a book name in the search box</b></h2>";
     }
 
 });
@@ -53,22 +53,23 @@ const bookCardDiv = url => {
                   <h5 class="card-title fw-bolder">Book Name: ${element.title ? element.title : 'No Book Name found'}</h5>
                   <p class="card-text fw-bold">Author Name: ${element.author_name ? element.author_name.slice(0, 10) : 'No Author Name Found'}</p>
                   <p class="card-text fw-bold">Published Year: ${element.first_publish_year ? element.first_publish_year : 'No Publish Year Found'}</p>
-                  <p class="card-text fw-bold">Publisher Name: ${element.publisher ? element.publisher.slice(0, 5) : 'No Published Name found'}</p>
+                  <p class="card-text fw-bold">Publisher Name: ${element.publisher ? element.publisher.slice(0, 5) : 'No Publisher Name Found'}</p>
                   
                 </div>
               </div>`
                 bookContainer.appendChild(bookDiv);
             });
 
-            if (data.numFound > 0) {
-                const searchCountDiv = document.createElement('div');
-                searchCountDiv.innerHTML = `
-            <div class="mt-5 mb-3"><h1 class="text-center text-danger">Showing first 30 results out of ${data.numFound} results.<h1></div>
-            `
-                countContainer.appendChild(searchCountDiv);
-            } else {
-                errorMessage();
-            }
+            displayCount(data.numFound);
+            // if (data.numFound > 0) {
+            //     const searchCountDiv = document.createElement('div');
+            //     searchCountDiv.innerHTML = `
+            // <div class="mt-5 mb-3"><h1 class="text-center text-danger">Showing first 30 results out of ${data.numFound} results.<h1></div>
+            // `
+            //     countContainer.appendChild(searchCountDiv);
+            // } else {
+            //     errorMessage();
+            // }
 
         })
 
@@ -88,3 +89,14 @@ const errorMessage = () => {
 };
 
 
+const displayCount = numOfResults => {
+    if (data.numFound > 0) {
+        const searchCountDiv = document.createElement('div');
+        searchCountDiv.innerHTML = `
+    <div class="mt-5 mb-3"><h1 class="text-center text-danger">Showing first 30 results out of ${data.numFound} results.<h1></div>
+    `
+        countContainer.appendChild(searchCountDiv);
+    } else {
+        errorMessage();
+    }
+}
