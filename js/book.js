@@ -35,41 +35,34 @@ const bookCardDiv = url => {
     fetchedData(url)
         .then(data => {
             document.getElementById("spinner").classList.add("d-none");
+            const { docs, numFound } = data;
             //console.log(data);
-            const first30Books = data.docs.slice(0, 30);
+            const first30Books = docs.slice(0, 30);
             const bookContainer = document.getElementById("book-items");
-            const countContainer = document.getElementById("count-detail");
+
 
             first30Books?.forEach(element => {
                 //console.log(element);
 
+                const { cover_i, title, author_name, first_publish_year, publisher } = element;
 
                 const bookDiv = document.createElement('div');
 
                 bookDiv.classList.add = "col";
                 bookDiv.innerHTML = `<div class="card h-100 shadow rounded p-3">
-                <img src="https://covers.openlibrary.org/b/id/${element.cover_i ? element.cover_i : 10909258}-M.jpg" class="card-img-top" alt="...">
+                <img src="https://covers.openlibrary.org/b/id/${cover_i ? cover_i : 10909258}-M.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
-                  <h5 class="card-title fw-bolder">Book Name: ${element.title ? element.title : 'No Book Name found'}</h5>
-                  <p class="card-text fw-bold">Author Name: ${element.author_name ? element.author_name.slice(0, 10) : 'No Author Name Found'}</p>
-                  <p class="card-text fw-bold">Published Year: ${element.first_publish_year ? element.first_publish_year : 'No Publish Year Found'}</p>
-                  <p class="card-text fw-bold">Publisher Name: ${element.publisher ? element.publisher.slice(0, 5) : 'No Publisher Name Found'}</p>
-                  
+                  <h5 class="card-title fw-bolder">Book Name: ${title ? title : 'Book Name Not Found'}</h5>
+                  <p class="card-text fw-bold">Author Name: ${author_name ? author_name.slice(0, 10) : 'Author Name Not Found'}</p>
+                  <p class="card-text fw-bold">Published Year: ${element.first_publish_year ? first_publish_year : 'Publish Year Not Found'}</p>
+                  <p class="card-text fw-bold">Publisher Name: ${publisher ? publisher.slice(0, 5) : 'Publisher Name Not Found'}</p>
+                
                 </div>
               </div>`
                 bookContainer.appendChild(bookDiv);
             });
 
-            displayCount(data.numFound);
-            // if (data.numFound > 0) {
-            //     const searchCountDiv = document.createElement('div');
-            //     searchCountDiv.innerHTML = `
-            // <div class="mt-5 mb-3"><h1 class="text-center text-danger">Showing first 30 results out of ${data.numFound} results.<h1></div>
-            // `
-            //     countContainer.appendChild(searchCountDiv);
-            // } else {
-            //     errorMessage();
-            // }
+            displayCount(numFound);
 
         })
 
@@ -77,7 +70,18 @@ const bookCardDiv = url => {
 }
 
 
-
+const displayCount = numOfResults => {
+    const countContainer = document.getElementById("count-detail");
+    if (numOfResults > 0) {
+        const searchCountDiv = document.createElement('div');
+        searchCountDiv.innerHTML = `
+    <div class="mt-5 mb-3"><h1 class="text-center text-danger">Showing first 30 results out of ${numOfResults} results.<h1></div>
+    `
+        countContainer.appendChild(searchCountDiv);
+    } else {
+        errorMessage();
+    }
+}
 
 const errorMessage = () => {
     const searchText = document.getElementById("input-value").value;
@@ -89,14 +93,3 @@ const errorMessage = () => {
 };
 
 
-const displayCount = numOfResults => {
-    if (data.numFound > 0) {
-        const searchCountDiv = document.createElement('div');
-        searchCountDiv.innerHTML = `
-    <div class="mt-5 mb-3"><h1 class="text-center text-danger">Showing first 30 results out of ${data.numFound} results.<h1></div>
-    `
-        countContainer.appendChild(searchCountDiv);
-    } else {
-        errorMessage();
-    }
-}
